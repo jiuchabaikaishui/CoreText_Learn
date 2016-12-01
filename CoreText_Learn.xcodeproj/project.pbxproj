@@ -16,6 +16,10 @@
 		6E52113D1DEC2C60004CCAA2 /* CoreText_LearnTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E52113C1DEC2C60004CCAA2 /* CoreText_LearnTests.m */; };
 		6E5211481DEC2C60004CCAA2 /* CoreText_LearnUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5211471DEC2C60004CCAA2 /* CoreText_LearnUITests.m */; };
 		6E5211591DEC2D0B004CCAA2 /* QSPDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5211581DEC2D0B004CCAA2 /* QSPDisplayView.m */; };
+		6EEC37091DEFCB7100E99CD7 /* QSPFrameParserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC37081DEFCB7100E99CD7 /* QSPFrameParserConfig.m */; };
+		6EEC370C1DEFCD6100E99CD7 /* QSPFrameParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC370B1DEFCD6100E99CD7 /* QSPFrameParser.m */; };
+		6EEC370F1DEFCE2600E99CD7 /* CoretextData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC370E1DEFCE2600E99CD7 /* CoretextData.m */; };
+		6EF45F361DEEA5910046BADA /* UIView+frameAdjust.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF45F351DEEA5910046BADA /* UIView+frameAdjust.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +58,15 @@
 		6E5211491DEC2C60004CCAA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E5211571DEC2D0B004CCAA2 /* QSPDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSPDisplayView.h; sourceTree = "<group>"; };
 		6E5211581DEC2D0B004CCAA2 /* QSPDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSPDisplayView.m; sourceTree = "<group>"; };
+		6EEC37071DEFCB7100E99CD7 /* QSPFrameParserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSPFrameParserConfig.h; sourceTree = "<group>"; };
+		6EEC37081DEFCB7100E99CD7 /* QSPFrameParserConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSPFrameParserConfig.m; sourceTree = "<group>"; };
+		6EEC370A1DEFCD6100E99CD7 /* QSPFrameParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSPFrameParser.h; sourceTree = "<group>"; };
+		6EEC370B1DEFCD6100E99CD7 /* QSPFrameParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSPFrameParser.m; sourceTree = "<group>"; };
+		6EEC370D1DEFCE2600E99CD7 /* CoretextData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoretextData.h; sourceTree = "<group>"; };
+		6EEC370E1DEFCE2600E99CD7 /* CoretextData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoretextData.m; sourceTree = "<group>"; };
+		6EF45F331DEE66C90046BADA /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		6EF45F341DEEA5910046BADA /* UIView+frameAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+frameAdjust.h"; sourceTree = "<group>"; };
+		6EF45F351DEEA5910046BADA /* UIView+frameAdjust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+frameAdjust.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +136,9 @@
 			isa = PBXGroup;
 			children = (
 				6E5211231DEC2C5F004CCAA2 /* main.m */,
+				6EF45F331DEE66C90046BADA /* PrefixHeader.pch */,
+				6EF45F341DEEA5910046BADA /* UIView+frameAdjust.h */,
+				6EF45F351DEEA5910046BADA /* UIView+frameAdjust.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -148,6 +164,12 @@
 		6E5211551DEC2CBD004CCAA2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6EEC37071DEFCB7100E99CD7 /* QSPFrameParserConfig.h */,
+				6EEC37081DEFCB7100E99CD7 /* QSPFrameParserConfig.m */,
+				6EEC370A1DEFCD6100E99CD7 /* QSPFrameParser.h */,
+				6EEC370B1DEFCD6100E99CD7 /* QSPFrameParser.m */,
+				6EEC370D1DEFCE2600E99CD7 /* CoretextData.h */,
+				6EEC370E1DEFCE2600E99CD7 /* CoretextData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -291,9 +313,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EEC370C1DEFCD6100E99CD7 /* QSPFrameParser.m in Sources */,
+				6EEC370F1DEFCE2600E99CD7 /* CoretextData.m in Sources */,
 				6E5211591DEC2D0B004CCAA2 /* QSPDisplayView.m in Sources */,
 				6E52112A1DEC2C5F004CCAA2 /* ViewController.m in Sources */,
+				6EF45F361DEEA5910046BADA /* UIView+frameAdjust.m in Sources */,
 				6E5211271DEC2C5F004CCAA2 /* AppDelegate.m in Sources */,
+				6EEC37091DEFCB7100E99CD7 /* QSPFrameParserConfig.m in Sources */,
 				6E5211241DEC2C5F004CCAA2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,8 +461,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PREFIX_HEADER = /Users/QSP/MyWork/Learn/2016.11/CoreText_Learn/CoreText_Learn/PrefixHeader.pch;
 				INFOPLIST_FILE = CoreText_Learn/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.etongxing.www.CoreText-Learn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -447,8 +475,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PREFIX_HEADER = /Users/QSP/MyWork/Learn/2016.11/CoreText_Learn/CoreText_Learn/PrefixHeader.pch;
 				INFOPLIST_FILE = CoreText_Learn/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.etongxing.www.CoreText-Learn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -520,6 +550,7 @@
 				6E52114E1DEC2C60004CCAA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6E52114F1DEC2C60004CCAA2 /* Build configuration list for PBXNativeTarget "CoreText_LearnTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +559,7 @@
 				6E5211511DEC2C60004CCAA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6E5211521DEC2C60004CCAA2 /* Build configuration list for PBXNativeTarget "CoreText_LearnUITests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +568,7 @@
 				6E5211541DEC2C60004CCAA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

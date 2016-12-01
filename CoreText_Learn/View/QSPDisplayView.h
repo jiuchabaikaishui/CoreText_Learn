@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoretextData.h"
 
 @interface QSPDisplayView : UIView
+
+@property (strong, nonatomic) CoretextData *coretextData;
 
 @end
