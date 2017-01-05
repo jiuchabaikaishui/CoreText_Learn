@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E138EA91E1E2D8700DC8CE5 /* SectionAttributedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E138EA81E1E2D8700DC8CE5 /* SectionAttributedModel.m */; };
 		6E5211241DEC2C5F004CCAA2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5211231DEC2C5F004CCAA2 /* main.m */; };
 		6E5211271DEC2C5F004CCAA2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5211261DEC2C5F004CCAA2 /* AppDelegate.m */; };
 		6E52112A1DEC2C5F004CCAA2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5211291DEC2C5F004CCAA2 /* ViewController.m */; };
@@ -43,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E138EA71E1E2D8700DC8CE5 /* SectionAttributedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionAttributedModel.h; sourceTree = "<group>"; };
+		6E138EA81E1E2D8700DC8CE5 /* SectionAttributedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionAttributedModel.m; sourceTree = "<group>"; };
 		6E52111F1DEC2C5F004CCAA2 /* CoreText_Learn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreText_Learn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E5211231DEC2C5F004CCAA2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6E5211251DEC2C5F004CCAA2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -181,6 +184,8 @@
 				6EEC370B1DEFCD6100E99CD7 /* QSPFrameParser.m */,
 				6EEC370D1DEFCE2600E99CD7 /* CoretextData.h */,
 				6EEC370E1DEFCE2600E99CD7 /* CoretextData.m */,
+				6E138EA71E1E2D8700DC8CE5 /* SectionAttributedModel.h */,
+				6E138EA81E1E2D8700DC8CE5 /* SectionAttributedModel.m */,
 				6EE9DE411E0BAFB9004D570F /* AttributedFrameModel.h */,
 				6EE9DE421E0BAFB9004D570F /* AttributedFrameModel.m */,
 				6EE9DE441E0BAFD8004D570F /* AttributedModel.h */,
@@ -333,6 +338,7 @@
 				6EE9DE431E0BAFB9004D570F /* AttributedFrameModel.m in Sources */,
 				6EEC370F1DEFCE2600E99CD7 /* CoretextData.m in Sources */,
 				6EE9DE401E0BA3DF004D570F /* AttributedViewController.m in Sources */,
+				6E138EA91E1E2D8700DC8CE5 /* SectionAttributedModel.m in Sources */,
 				6E5211591DEC2D0B004CCAA2 /* QSPDisplayView.m in Sources */,
 				6E52112A1DEC2C5F004CCAA2 /* ViewController.m in Sources */,
 				6EF45F361DEEA5910046BADA /* UIView+frameAdjust.m in Sources */,

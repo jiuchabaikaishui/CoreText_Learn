@@ -8,6 +8,8 @@
 
 #import "AttributedFrameModel.h"
 
+#define Default_Font                    [UIFont systemFontOfSize:14]
+
 @implementation AttributedFrameModel
 
 + (instancetype)attributedFrameModelWithDic:(NSDictionary *)dic
@@ -45,7 +47,24 @@
         
         Y = Y + size.height + spacing;
         NSRange range = NSMakeRange(0, 0);
-        NSDictionary *attributes = [attributedModel.effectString attributesAtIndex:0 effectiveRange:&range];
+        NSDictionary *attributes;
+        while (range.location + range.length < attributedModel.effectString.length) {
+            attributes = [attributedModel.effectString attributesAtIndex:range.location + range.length effectiveRange:&range];
+            if (![attributes valueForKey:NSFontAttributeName]) {
+                NSMutableDictionary *mAttributes = [[NSMutableDictionary alloc] initWithDictionary:attributes];
+                [mAttributes setValue:Default_Font forKey:NSFontAttributeName];
+                NSMutableAttributedString *maStr;
+                if ([attributedModel.effectString isKindOfClass:[NSMutableAttributedString class]]) {
+                    maStr = (NSMutableAttributedString *)attributedModel.effectString;
+                }
+                else
+                {
+                    maStr = [[NSMutableAttributedString alloc] initWithAttributedString:attributedModel.effectString];
+                }
+                [maStr addAttributes:mAttributes range:range];
+                attributedModel.effectString = maStr;
+            }
+        }
         size = [attributedModel.effectString boundingRectWithSize:limitSize options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
         _effectRect = (CGRect){{spacing, Y}, size};
         

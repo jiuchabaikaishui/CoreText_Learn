@@ -35,17 +35,45 @@
          paragraphStyle.lineHeightMultiple = 15; Natural line height is multiplied by this factor (if positive) before being constrained by minimum and maximum line height.
          paragraphStyle.hyphenationFactor = 1;//连字属性 在iOS，唯一支持的值分别为0和1
          */
+        NSMutableAttributedString *singleFontStr = [[NSMutableAttributedString alloc] initWithString:@"我是单个字符10-20号随机系统字体"];
+        for (int index = 0; index < singleFontStr.length; index++) {
+            UIFont *randomFont = [UIFont systemFontOfSize:arc4random()%11 + 10];
+            [singleFontStr addAttributes:@{NSFontAttributeName:randomFont} range:NSMakeRange(index, 1)];
+        }
+        
+        NSMutableAttributedString *singleColorStr = [[NSMutableAttributedString alloc] initWithString:@"我是单个字符10-20号随机系统字体"];
+        for (int index = 0; index < singleColorStr.length; index++) {
+            UIColor *randomColor = [UIColor colorWithRed:(arc4random()%256)/255.0 green:(arc4random()%256)/255.0 blue:(arc4random()%256)/255.0 alpha:1];
+            [singleColorStr addAttributes:@{NSForegroundColorAttributeName:randomColor} range:NSMakeRange(index, 1)];
+        }
+        
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.lineSpacing = 20;
-        NSArray *arr = @[@{@"title":@"NSFontAttributeName", @"describe":@"文字字体", @"effectString":[[NSAttributedString alloc] initWithString:@"30号系统字体" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
-                         @{@"title":@"NSForegroundColorAttributeName", @"describe":@"文字颜色", @"effectString":[[NSAttributedString alloc] initWithString:@"随机颜色" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:(arc4random()%256)/255.0 green:(arc4random()%256)/255.0 blue:(arc4random()%256)/255.0 alpha:1]}]},
-                         @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格", @"effectString":[[NSAttributedString alloc] initWithString:@"30号系统字体，20个单位的行距" attributes:@{NSParagraphStyleAttributeName:paragraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]}
+        NSArray *arr = @[
+                            @{@"title":@"文字字体", @"items":@[
+                                                                @{@"title":@"NSFontAttributeName", @"describe":@"14号系统字体", @"effectString":[[NSAttributedString alloc] initWithString:@"我是14号系统字体" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}]},
+                                                                @{@"title":@"NSFontAttributeName", @"describe":@"20号系统字体", @"effectString":[[NSAttributedString alloc] initWithString:@"我是20号系统字体" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]}]},
+                                                                @{@"title":@"NSFontAttributeName", @"describe":@"10-20号随机系统字体", @"effectString":[[NSAttributedString alloc] initWithString:@"我是8-12号随机系统字体" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:arc4random()%11 + 10]}]},
+                                                                @{@"title":@"NSFontAttributeName", @"describe":@"单个字符10-20号随机系统字体", @"effectString":singleFontStr}
+                                                            ]
+                              },
+                            @{@"title":@"文字颜色", @"items":@[
+                                                                @{@"title":@"NSForegroundColorAttributeName", @"describe":@"红色文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是红色文字" attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}]},
+                                                                @{@"title":@"NSForegroundColorAttributeName", @"describe":@"青色文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是青色文字" attributes:@{NSForegroundColorAttributeName:[UIColor cyanColor]}]},
+                                                                @{@"title":@"NSForegroundColorAttributeName", @"describe":@"随机颜色文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是随机颜色文字" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:(arc4random()%256)/255.0 green:(arc4random()%256)/255.0 blue:(arc4random()%256)/255.0 alpha:1]}]},
+                                                                @{@"title":@"NSForegroundColorAttributeName", @"describe":@"单个随机颜色文字", @"effectString":singleColorStr}
+                                                            ]
+                              },
+                            @{@"title":@"文字段落风格", @"items":@[
+                                                                @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格", @"effectString":[[NSAttributedString alloc] initWithString:@"30号系统字体，20个单位的行距" attributes:@{NSParagraphStyleAttributeName:paragraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]}
+                                                            ]
+                              }
                          ];
         
         
         NSMutableArray *mArr = [NSMutableArray arrayWithCapacity:1];
         for (NSDictionary *dic in arr) {
-            [mArr addObject:[AttributedFrameModel attributedFrameModelWithDic:dic]];
+            [mArr addObject:[SectionAttributedModel sectionAttributedModelWithDic:dic]];
         }
         
         _dataArr = mArr;
@@ -61,28 +89,38 @@
 }
 - (void)settingUi
 {
+    self.title = @"NSAttributedString富文本";
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 #pragma mark - <UITableViewDelegate, UITableViewDataSource>代理方法
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.dataArr.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArr.count;
+    SectionAttributedModel *sectionModel = self.dataArr[section];
+    return sectionModel.items.count;
+}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    SectionAttributedModel *sectionModel = self.dataArr[section];
+    return sectionModel.title;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AttributedCell *cell = [AttributedCell attributedCellWithAttributedFrameModel:self.dataArr[indexPath.row] andTableView:tableView];
+    SectionAttributedModel *sectionModel = self.dataArr[indexPath.section];
+    AttributedFrameModel *frameModel = sectionModel.items[indexPath.row];
+    AttributedCell *cell = [AttributedCell attributedCellWithAttributedFrameModel:frameModel andTableView:tableView];
     
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AttributedFrameModel *model = self.dataArr[indexPath.row];
-    return model.cellHeight;
+    SectionAttributedModel *sectionModel = self.dataArr[indexPath.section];
+    AttributedFrameModel *frameModel = sectionModel.items[indexPath.row];
+    return frameModel.cellHeight;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -120,8 +158,8 @@
     AttributedCell *cell = [tableView dequeueReusableCellWithIdentifier:identiffier];
     if (cell == nil) {
         cell = [[AttributedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identiffier];
-        cell.model = model;
     }
+    cell.model = model;
     
     return cell;
 }

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AttributedFrameModel.h"
+#import "SectionAttributedModel.h"
 
 @interface AttributedViewController : UIViewController
 
