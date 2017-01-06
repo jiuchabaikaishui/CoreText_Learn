@@ -41,35 +41,98 @@
             [singleFontStr addAttributes:@{NSFontAttributeName:randomFont} range:NSMakeRange(index, 1)];
         }
         
-        NSMutableAttributedString *singleColorStr = [[NSMutableAttributedString alloc] initWithString:@"我是单个字符10-20号随机系统字体"];
+        NSMutableAttributedString *singleColorStr = [[NSMutableAttributedString alloc] initWithString:@"我是单个字符随机颜色文字"];
         for (int index = 0; index < singleColorStr.length; index++) {
             UIColor *randomColor = [UIColor colorWithRed:(arc4random()%256)/255.0 green:(arc4random()%256)/255.0 blue:(arc4random()%256)/255.0 alpha:1];
             [singleColorStr addAttributes:@{NSForegroundColorAttributeName:randomColor} range:NSMakeRange(index, 1)];
         }
         
+        NSMutableAttributedString *singleBackColorStr = [[NSMutableAttributedString alloc] initWithString:@"我是单个字符随机背景颜色文字"];
+        for (int index = 0; index < singleBackColorStr.length; index++) {
+            UIColor *randomColor = [UIColor colorWithRed:(arc4random()%256)/255.0 green:(arc4random()%256)/255.0 blue:(arc4random()%256)/255.0 alpha:1];
+            [singleBackColorStr addAttributes:@{NSBackgroundColorAttributeName:randomColor} range:NSMakeRange(index, 1)];
+        }
+        
+        NSMutableAttributedString *singleKernColorStr = [[NSMutableAttributedString alloc] initWithString:@"我是单个随机间距10~20文字"];
+        for (int index = 0; index < singleKernColorStr.length; index++) {
+            [singleKernColorStr addAttributes:@{NSKernAttributeName:@((arc4random()%11) + 10)} range:NSMakeRange(index, 1)];
+        }
+        
+        NSMutableAttributedString *singleStrokeStr = [[NSMutableAttributedString alloc] initWithString:@"我是单个随机描边颜色和宽度1~10文字"];
+        for (int index = 0; index < singleStrokeStr.length; index++) {
+            UIColor *randomColor = [UIColor colorWithRed:(arc4random()%256)/255.0 green:(arc4random()%256)/255.0 blue:(arc4random()%256)/255.0 alpha:1];
+            [singleStrokeStr addAttributes:@{NSStrokeColorAttributeName:randomColor, NSStrokeWidthAttributeName:@(arc4random()%10 + 1)} range:NSMakeRange(index, 1)];
+        }
+        
+        NSShadow *shadow = [[NSShadow alloc] init];
+        shadow.shadowOffset = CGSizeMake(3, 4);
+        shadow.shadowBlurRadius = 5;
+        shadow.shadowColor = [UIColor colorWithRed:(arc4random()%256)/255.0 green:(arc4random()%256)/255.0 blue:(arc4random()%256)/255.0 alpha:1];
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.lineSpacing = 20;
         NSArray *arr = @[
                             @{@"title":@"文字字体", @"items":@[
                                                                 @{@"title":@"NSFontAttributeName", @"describe":@"14号系统字体", @"effectString":[[NSAttributedString alloc] initWithString:@"我是14号系统字体" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}]},
                                                                 @{@"title":@"NSFontAttributeName", @"describe":@"20号系统字体", @"effectString":[[NSAttributedString alloc] initWithString:@"我是20号系统字体" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]}]},
-                                                                @{@"title":@"NSFontAttributeName", @"describe":@"10-20号随机系统字体", @"effectString":[[NSAttributedString alloc] initWithString:@"我是8-12号随机系统字体" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:arc4random()%11 + 10]}]},
                                                                 @{@"title":@"NSFontAttributeName", @"describe":@"单个字符10-20号随机系统字体", @"effectString":singleFontStr}
                                                             ]
                               },
                             @{@"title":@"文字颜色", @"items":@[
                                                                 @{@"title":@"NSForegroundColorAttributeName", @"describe":@"红色文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是红色文字" attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}]},
                                                                 @{@"title":@"NSForegroundColorAttributeName", @"describe":@"青色文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是青色文字" attributes:@{NSForegroundColorAttributeName:[UIColor cyanColor]}]},
-                                                                @{@"title":@"NSForegroundColorAttributeName", @"describe":@"随机颜色文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是随机颜色文字" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:(arc4random()%256)/255.0 green:(arc4random()%256)/255.0 blue:(arc4random()%256)/255.0 alpha:1]}]},
                                                                 @{@"title":@"NSForegroundColorAttributeName", @"describe":@"单个随机颜色文字", @"effectString":singleColorStr}
                                                             ]
+                              },
+                            @{@"title":@"文字背景颜色", @"items":@[
+                                                                @{@"title":@"NSBackgroundColorAttributeName", @"describe":@"背景红色文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是背景红色文字" attributes:@{NSBackgroundColorAttributeName:[UIColor redColor]}]},
+                                                                @{@"title":@"NSBackgroundColorAttributeName", @"describe":@"背景青色文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是背景青色文字" attributes:@{NSBackgroundColorAttributeName:[UIColor cyanColor]}]},
+                                                                @{@"title":@"NSBackgroundColorAttributeName", @"describe":@"单个随机背景颜色文字", @"effectString":singleBackColorStr}
+                                                                ]
+                              },
+                            @{@"title":@"文字连字符", @"items":@[
+                                                                @{@"title":@"NSLigatureAttributeName", @"describe":@"没有连字符", @"effectString":[[NSAttributedString alloc] initWithString:@"我是没有连字符文字" attributes:@{NSLigatureAttributeName:@0}]},
+                                                                @{@"title":@"NSLigatureAttributeName", @"describe":@"默认连字符", @"effectString":[[NSAttributedString alloc] initWithString:@"我是默认连字符文字" attributes:@{NSLigatureAttributeName:@1}]}
+                                                               ]
+                              },
+                            @{@"title":@"文字间距", @"items":@[
+                                                                @{@"title":@"NSKernAttributeName", @"describe":@"间距10文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是背景红色文字" attributes:@{NSKernAttributeName:@10}]},
+                                                                @{@"title":@"NSKernAttributeName", @"describe":@"间距15文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是背景青色文字" attributes:@{NSKernAttributeName:@15}]},
+                                                                @{@"title":@"NSKernAttributeName", @"describe":@"单个随机间距10~20文字", @"effectString":singleKernColorStr}
+                                                             ]
+                              },
+                            @{@"title":@"文字删除线", @"items":@[
+                                                                @{@"title":@"NSStrikethroughStyleAttributeName", @"describe":@"NSUnderlineStyleNone不设置删除线文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是NSUnderlineStyleNone不设置删除线文字" attributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleNone)}]},
+                                                                @{@"title":@"NSStrikethroughStyleAttributeName", @"describe":@"NSUnderlineStyleSingle设置删除线为细单实线文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是NSUnderlineStyleSingle设置删除线为细单实线文字" attributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle)}]},
+                                                                @{@"title":@"NSStrikethroughStyleAttributeName", @"describe":@"NSUnderlineStyleThick设置删除线为粗单实线文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是NSUnderlineStyleThick设置删除线为粗单实线文字" attributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleThick)}]},
+                                                                @{@"title":@"NSStrikethroughStyleAttributeName", @"describe":@"NSUnderlineStyleDouble设置删除线为细双实线文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是NSUnderlineStyleDouble设置删除线为细双实线文字" attributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleDouble)}]}
+                                                               ]
+                              },
+                            @{@"title":@"文字下滑线", @"items":@[
+                                                                @{@"title":@"NSUnderlineStyleAttributeName", @"describe":@"NSUnderlineStyleNone不设置下滑线文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是NSUnderlineStyleNone不设置下滑线文字" attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone)}]},
+                                                                @{@"title":@"NSUnderlineStyleAttributeName", @"describe":@"NSUnderlineStyleSingle设置下滑线为细单实线文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是NSUnderlineStyleSingle设置下滑线为细单实线文字" attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)}]},
+                                                                @{@"title":@"NSUnderlineStyleAttributeName", @"describe":@"NSUnderlineStyleThick设置下滑线为粗单实线文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是NSUnderlineStyleThick设置下滑线为粗单实线文字" attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleThick)}]},
+                                                                @{@"title":@"NSUnderlineStyleAttributeName", @"describe":@"NSUnderlineStyleDouble设置下滑线为细双实线文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是NSUnderlineStyleDouble设置下滑线为细双实线文字" attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleDouble)}]}
+                                                              ]
+                              },
+                            @{@"title":@"文字描边颜色和宽度", @"items":@[
+                                                                        @{@"title":@"NSStrokeColorAttributeName和NSStrokeWidthAttributeName(此两个属性必须一起用才有效果)", @"describe":@"描边红色色和宽度2文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是描边红色色和宽度2文字" attributes:@{NSStrokeColorAttributeName:[UIColor redColor], NSStrokeWidthAttributeName:@2}]},
+                                                                        @{@"title":@"NSStrokeColorAttributeName和NSStrokeWidthAttributeName(此两个属性必须一起用才有效果)", @"describe":@"描边青色色和宽度4文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是描边青色色和宽度4文字" attributes:@{NSStrokeColorAttributeName:[UIColor cyanColor], NSStrokeWidthAttributeName:@4}]},
+                                                                        @{@"title":@"NSStrokeColorAttributeName和NSStrokeWidthAttributeName(此两个属性必须一起用才有效果)", @"describe":@"单个随机描边颜色和宽度1~10文字", @"effectString":singleStrokeStr},
+                                                                      ]
+                              },
+                            @{@"title":@"文字阴影", @"items":@[
+                                                                @{@"title":@"NSShadowAttributeName", @"describe":@"阴影文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是阴影文字" attributes:@{NSShadowAttributeName:shadow}]}
+                                                             ]
+                              },
+                            @{@"title":@"文字特效", @"items":@[
+                                                                @{@"title":@"NSTextEffectAttributeName", @"describe":@"特效文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是特效文字" attributes:@{NSTextEffectAttributeName:NSTextEffectLetterpressStyle}]}
+                                                             ]
                               },
                             @{@"title":@"文字段落风格", @"items":@[
                                                                 @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格", @"effectString":[[NSAttributedString alloc] initWithString:@"30号系统字体，20个单位的行距" attributes:@{NSParagraphStyleAttributeName:paragraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]}
                                                             ]
                               }
                          ];
-        
         
         NSMutableArray *mArr = [NSMutableArray arrayWithCapacity:1];
         for (NSDictionary *dic in arr) {
@@ -89,7 +152,7 @@
 }
 - (void)settingUi
 {
-    self.title = @"NSAttributedString富文本";
+    self.title = @"富文本";
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
