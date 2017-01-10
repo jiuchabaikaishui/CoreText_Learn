@@ -68,6 +68,33 @@
         shadow.shadowOffset = CGSizeMake(3, 4);
         shadow.shadowBlurRadius = 5;
         shadow.shadowColor = [UIColor colorWithRed:(arc4random()%256)/255.0 green:(arc4random()%256)/255.0 blue:(arc4random()%256)/255.0 alpha:1];
+        
+        NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+        UIImage *image = [UIImage imageNamed:@"Weizhifu"];
+        attachment.image = image;
+        attachment.bounds = CGRectMake(0, 0, image.size.width, image.size.height);
+        NSAttributedString *attributedStr = [NSAttributedString attributedStringWithAttachment:attachment];
+        NSMutableAttributedString *mattributedStr = [[NSMutableAttributedString alloc] initWithString:@"我是带附件的文字" attributes:nil];
+        [mattributedStr insertAttributedString:attributedStr atIndex:mattributedStr.length];
+        
+        NSMutableAttributedString *singleUnderLineColorStr = [[NSMutableAttributedString alloc] initWithString:@"我是单个下划线随机颜色文字" attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)}];
+        for (int index = 0; index < singleUnderLineColorStr.length; index++) {
+            UIColor *randomColor = [UIColor colorWithRed:(arc4random()%256)/255.0 green:(arc4random()%256)/255.0 blue:(arc4random()%256)/255.0 alpha:1];
+            [singleUnderLineColorStr addAttributes:@{NSUnderlineColorAttributeName:randomColor} range:NSMakeRange(index, 1)];
+        }
+        
+        NSMutableAttributedString *singleStrikethroughColorStr = [[NSMutableAttributedString alloc] initWithString:@"我是单个删除线随机颜色文字" attributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle)}];
+        for (int index = 0; index < singleStrikethroughColorStr.length; index++) {
+            UIColor *randomColor = [UIColor colorWithRed:(arc4random()%256)/255.0 green:(arc4random()%256)/255.0 blue:(arc4random()%256)/255.0 alpha:1];
+            [singleStrikethroughColorStr addAttributes:@{NSStrikethroughColorAttributeName:randomColor} range:NSMakeRange(index, 1)];
+        }
+        
+        NSMutableAttributedString *singleObliquenessColorStr = [[NSMutableAttributedString alloc] initWithString:@"我是单个倾斜度在-2~2的文字"];
+        for (int index = 0; index < singleObliquenessColorStr.length; index++) {
+            NSNumber *randomNuber = @(arc4random()%5-2);
+            [singleObliquenessColorStr addAttributes:@{NSObliquenessAttributeName:randomNuber} range:NSMakeRange(index, 1)];
+        }
+        
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.lineSpacing = 20;
         NSArray *arr = @[
@@ -127,6 +154,37 @@
                             @{@"title":@"文字特效", @"items":@[
                                                                 @{@"title":@"NSTextEffectAttributeName", @"describe":@"特效文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是特效文字" attributes:@{NSTextEffectAttributeName:NSTextEffectLetterpressStyle}]}
                                                              ]
+                              },
+                            @{@"title":@"文字附件", @"items":@[
+                                                                @{@"title":@"NSAttachmentAttributeName", @"describe":@"带附件的文字", @"effectString":mattributedStr}
+                                                             ]
+                              },
+                            @{@"title":@"文字链接", @"items":@[
+                                                                @{@"title":@"NSAttachmentAttributeName", @"describe":@"带链接的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是带链接的文字" attributes:@{NSLinkAttributeName:@"www.baidu.com"}]}
+                                                            ]
+                              },
+                            @{@"title":@"文字基线偏移", @"items":@[
+                                                                    @{@"title":@"NSAttachmentAttributeName", @"describe":@"基线偏移为-5的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是基线偏移为-5的文字" attributes:@{NSBaselineOffsetAttributeName:@-5}]},
+                                                                    @{@"title":@"NSAttachmentAttributeName", @"describe":@"基线偏移为5的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是基线偏移为5的文字" attributes:@{NSBaselineOffsetAttributeName:@5}]}
+                                                                ]
+                              },
+                            @{@"title":@"文字下划线颜色", @"items":@[
+                                                                    @{@"title":@"NSAttachmentAttributeName", @"describe":@"下划线为红色的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是下划线为红色的文字" attributes:@{NSUnderlineColorAttributeName:[UIColor redColor], NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)}]},
+                                                                    @{@"title":@"NSAttachmentAttributeName", @"describe":@"下划线为青色的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是下划线为青色的文字" attributes:@{NSUnderlineColorAttributeName:[UIColor cyanColor], NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)}]},
+                                                                    @{@"title":@"NSAttachmentAttributeName", @"describe":@"单个下划线随机颜色文字", @"effectString":singleUnderLineColorStr}
+                                                                 ]
+                              },
+                            @{@"title":@"文字删除线颜色", @"items":@[
+                                                                    @{@"title":@"NSAttachmentAttributeName", @"describe":@"删除线为红色的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是删除线为红色的文字" attributes:@{NSStrikethroughColorAttributeName:[UIColor redColor], NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle)}]},
+                                                                    @{@"title":@"NSAttachmentAttributeName", @"describe":@"删除线为青色的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是删除线为青色的文字" attributes:@{NSStrikethroughColorAttributeName:[UIColor cyanColor], NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle)}]},
+                                                                    @{@"title":@"NSAttachmentAttributeName", @"describe":@"单个删除线随机颜色文字", @"effectString":singleStrikethroughColorStr}
+                                                                  ]
+                              },
+                            @{@"title":@"文字倾斜度", @"items":@[
+                                                                    @{@"title":@"NSObliquenessAttributeName", @"describe":@"倾斜度为-2的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是倾斜度为-2的文字" attributes:@{NSObliquenessAttributeName:@(-2)}]},
+                                                                    @{@"title":@"NSObliquenessAttributeName", @"describe":@"倾斜度为2的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是倾斜度为2的文字" attributes:@{ NSObliquenessAttributeName:@(2)}]},
+                                                                    @{@"title":@"NSObliquenessAttributeName", @"describe":@"单个倾斜度为-2~2的文字", @"effectString":singleObliquenessColorStr}
+                                                                 ]
                               },
                             @{@"title":@"文字段落风格", @"items":@[
                                                                 @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格", @"effectString":[[NSAttributedString alloc] initWithString:@"30号系统字体，20个单位的行距" attributes:@{NSParagraphStyleAttributeName:paragraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]}
