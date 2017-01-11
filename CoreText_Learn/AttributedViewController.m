@@ -76,6 +76,9 @@
         NSAttributedString *attributedStr = [NSAttributedString attributedStringWithAttachment:attachment];
         NSMutableAttributedString *mattributedStr = [[NSMutableAttributedString alloc] initWithString:@"我是带附件的文字" attributes:nil];
         [mattributedStr insertAttributedString:attributedStr atIndex:mattributedStr.length];
+        [mattributedStr insertAttributedString:attributedStr atIndex:mattributedStr.length];
+        [mattributedStr insertAttributedString:attributedStr atIndex:mattributedStr.length];
+        [mattributedStr insertAttributedString:attributedStr atIndex:mattributedStr.length];
         
         NSMutableAttributedString *singleUnderLineColorStr = [[NSMutableAttributedString alloc] initWithString:@"我是单个下划线随机颜色文字" attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)}];
         for (int index = 0; index < singleUnderLineColorStr.length; index++) {
@@ -89,20 +92,54 @@
             [singleStrikethroughColorStr addAttributes:@{NSStrikethroughColorAttributeName:randomColor} range:NSMakeRange(index, 1)];
         }
         
-        NSMutableAttributedString *singleObliquenessColorStr = [[NSMutableAttributedString alloc] initWithString:@"我是单个倾斜度在-2~2的文字"];
+        NSMutableAttributedString *singleObliquenessColorStr = [[NSMutableAttributedString alloc] initWithString:@"我是单个倾斜度随机为-2~2的文字"];
         for (int index = 0; index < singleObliquenessColorStr.length; index++) {
             NSNumber *randomNuber = @(arc4random()%5-2);
             [singleObliquenessColorStr addAttributes:@{NSObliquenessAttributeName:randomNuber} range:NSMakeRange(index, 1)];
         }
         
-        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        paragraphStyle.lineSpacing = 20;
+        NSMutableParagraphStyle *lineSpacingParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        lineSpacingParagraphStyle.lineSpacing = 20;
+        
+        NSMutableParagraphStyle *paragraphSpacingParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphSpacingParagraphStyle.paragraphSpacing = 20;
+        
+        NSMutableParagraphStyle *alignmentLParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        alignmentLParagraphStyle.alignment = NSTextAlignmentLeft;
+        
+        NSMutableParagraphStyle *alignmentRParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        alignmentRParagraphStyle.alignment = NSTextAlignmentRight;
+        
+        NSMutableParagraphStyle *alignmentCParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        alignmentCParagraphStyle.alignment = NSTextAlignmentCenter;
+        
+        NSMutableParagraphStyle *firstLineHeadIndentParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        firstLineHeadIndentParagraphStyle.firstLineHeadIndent = 20;
+        
+        NSMutableParagraphStyle *headIndentParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        headIndentParagraphStyle.headIndent = 20;
+        
+        NSMutableParagraphStyle *tailIndentParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        tailIndentParagraphStyle.tailIndent = [UIScreen mainScreen].bounds.size.width - 16;
+        
         NSArray *arr = @[
                             @{@"title":@"文字字体", @"items":@[
                                                                 @{@"title":@"NSFontAttributeName", @"describe":@"14号系统字体", @"effectString":[[NSAttributedString alloc] initWithString:@"我是14号系统字体" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}]},
                                                                 @{@"title":@"NSFontAttributeName", @"describe":@"20号系统字体", @"effectString":[[NSAttributedString alloc] initWithString:@"我是20号系统字体" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]}]},
-                                                                @{@"title":@"NSFontAttributeName", @"describe":@"单个字符10-20号随机系统字体", @"effectString":singleFontStr}
+                                                                @{@"title":@"NSFontAttributeName", @"describe":@"我是单个字符10-20号随机系统字体", @"effectString":singleFontStr}
                                                             ]
+                              },
+                            
+                            @{@"title":@"文字段落风格", @"items":@[
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格行距", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体，20个单位的行距的文字" attributes:@{NSParagraphStyleAttributeName:lineSpacingParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格段落间距", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体\n20个单位的段落间距的文字" attributes:@{NSParagraphStyleAttributeName:paragraphSpacingParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格左对齐", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体左对齐的文字" attributes:@{NSParagraphStyleAttributeName:alignmentLParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格右对齐", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体右对齐的文字" attributes:@{NSParagraphStyleAttributeName:alignmentRParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格居中对齐", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体居中对齐的文字" attributes:@{NSParagraphStyleAttributeName:alignmentCParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格首行缩进", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体首行缩进20个单位的文字" attributes:@{NSParagraphStyleAttributeName:firstLineHeadIndentParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格首行缩进", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体首行缩进20个单位的文字" attributes:@{NSParagraphStyleAttributeName:headIndentParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格首行缩进", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体首行缩进20个单位的文字" attributes:@{NSParagraphStyleAttributeName:tailIndentParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]}
+                                                                ]
                               },
                             @{@"title":@"文字颜色", @"items":@[
                                                                 @{@"title":@"NSForegroundColorAttributeName", @"describe":@"红色文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是红色文字" attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}]},
@@ -113,7 +150,7 @@
                             @{@"title":@"文字背景颜色", @"items":@[
                                                                 @{@"title":@"NSBackgroundColorAttributeName", @"describe":@"背景红色文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是背景红色文字" attributes:@{NSBackgroundColorAttributeName:[UIColor redColor]}]},
                                                                 @{@"title":@"NSBackgroundColorAttributeName", @"describe":@"背景青色文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是背景青色文字" attributes:@{NSBackgroundColorAttributeName:[UIColor cyanColor]}]},
-                                                                @{@"title":@"NSBackgroundColorAttributeName", @"describe":@"单个随机背景颜色文字", @"effectString":singleBackColorStr}
+                                                                @{@"title":@"NSBackgroundColorAttributeName", @"describe":@"我是单个随机背景颜色文字", @"effectString":singleBackColorStr}
                                                                 ]
                               },
                             @{@"title":@"文字连字符", @"items":@[
@@ -124,7 +161,7 @@
                             @{@"title":@"文字间距", @"items":@[
                                                                 @{@"title":@"NSKernAttributeName", @"describe":@"间距10文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是背景红色文字" attributes:@{NSKernAttributeName:@10}]},
                                                                 @{@"title":@"NSKernAttributeName", @"describe":@"间距15文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是背景青色文字" attributes:@{NSKernAttributeName:@15}]},
-                                                                @{@"title":@"NSKernAttributeName", @"describe":@"单个随机间距10~20文字", @"effectString":singleKernColorStr}
+                                                                @{@"title":@"NSKernAttributeName", @"describe":@"我是单个随机间距10~20文字", @"effectString":singleKernColorStr}
                                                              ]
                               },
                             @{@"title":@"文字删除线", @"items":@[
@@ -160,7 +197,7 @@
                                                              ]
                               },
                             @{@"title":@"文字链接", @"items":@[
-                                                                @{@"title":@"NSAttachmentAttributeName", @"describe":@"带链接的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是带链接的文字" attributes:@{NSLinkAttributeName:@"www.baidu.com"}]}
+                                                                @{@"title":@"NSAttachmentAttributeName", @"describe":@"带链接的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是带链接的文字" attributes:@{NSLinkAttributeName:@"https://www.baidu.com"}]}
                                                             ]
                               },
                             @{@"title":@"文字基线偏移", @"items":@[
@@ -178,17 +215,30 @@
                                                                     @{@"title":@"NSAttachmentAttributeName", @"describe":@"删除线为红色的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是删除线为红色的文字" attributes:@{NSStrikethroughColorAttributeName:[UIColor redColor], NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle)}]},
                                                                     @{@"title":@"NSAttachmentAttributeName", @"describe":@"删除线为青色的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是删除线为青色的文字" attributes:@{NSStrikethroughColorAttributeName:[UIColor cyanColor], NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle)}]},
                                                                     @{@"title":@"NSAttachmentAttributeName", @"describe":@"单个删除线随机颜色文字", @"effectString":singleStrikethroughColorStr}
-                                                                  ]
+                                                                 ]
                               },
                             @{@"title":@"文字倾斜度", @"items":@[
                                                                     @{@"title":@"NSObliquenessAttributeName", @"describe":@"倾斜度为-2的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是倾斜度为-2的文字" attributes:@{NSObliquenessAttributeName:@(-2)}]},
                                                                     @{@"title":@"NSObliquenessAttributeName", @"describe":@"倾斜度为2的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是倾斜度为2的文字" attributes:@{ NSObliquenessAttributeName:@(2)}]},
-                                                                    @{@"title":@"NSObliquenessAttributeName", @"describe":@"单个倾斜度为-2~2的文字", @"effectString":singleObliquenessColorStr}
-                                                                 ]
+                                                                    @{@"title":@"NSObliquenessAttributeName", @"describe":@"单个倾斜度随机为-2~2的文字", @"effectString":singleObliquenessColorStr}
+                                                              ]
                               },
-                            @{@"title":@"文字段落风格", @"items":@[
-                                                                @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格", @"effectString":[[NSAttributedString alloc] initWithString:@"30号系统字体，20个单位的行距" attributes:@{NSParagraphStyleAttributeName:paragraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]}
-                                                            ]
+                            @{@"title":@"文字横向拉伸", @"items":@[
+                                                                    @{@"title":@"NSExpansionAttributeName", @"describe":@"横向拉伸为-1的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是横向拉伸为-1的文字" attributes:@{NSExpansionAttributeName:@(-1.0)}]},
+                                                                    @{@"title":@"NSExpansionAttributeName", @"describe":@"横向拉伸为1的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是横向拉伸为1的文字" attributes:@{ NSExpansionAttributeName:@(1.0)}]}
+                                                               ]
+                              },
+                            @{@"title":@"文字书写方向", @"items":@[
+                                                                    @{@"title":@"NSWritingDirectionAttributeName", @"describe":@"书写方向为NSWritingDirectionLeftToRight|NSWritingDirectionEmbedding的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是书写方向为NSWritingDirectionLeftToRight|NSWritingDirectionEmbedding的文字" attributes:@{NSWritingDirectionAttributeName:@[@(NSWritingDirectionLeftToRight|NSWritingDirectionEmbedding)]}]},
+                                                                    @{@"title":@"NSWritingDirectionAttributeName", @"describe":@"书写方向为NSWritingDirectionRightToLeft|NSWritingDirectionEmbedding的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是书写方向为NSWritingDirectionRightToLeft|NSWritingDirectionEmbedding的文字" attributes:@{ NSWritingDirectionAttributeName:@[@(NSWritingDirectionRightToLeft|NSWritingDirectionEmbedding)]}]},
+                                                                    @{@"title":@"NSWritingDirectionAttributeName", @"describe":@"书写方向为NSWritingDirectionLeftToRight|NSWritingDirectionOverride的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是书写方向为NSWritingDirectionLeftToRight|NSWritingDirectionOverride的文字" attributes:@{ NSWritingDirectionAttributeName:@[@(NSWritingDirectionLeftToRight|NSWritingDirectionOverride)]}]},
+                                                                    @{@"title":@"NSWritingDirectionAttributeName", @"describe":@"书写方向为NSWritingDirectionRightToLeft|NSWritingDirectionOverride的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是书写方向为NSWritingDirectionRightToLeft|NSWritingDirectionOverride的文字" attributes:@{ NSWritingDirectionAttributeName:@[@(NSWritingDirectionRightToLeft|NSWritingDirectionOverride)]}]}
+                                                              ]
+                              },
+                            @{@"title":@"文字排版方向", @"items":@[
+                                                                    @{@"title":@"NSVerticalGlyphFormAttributeName", @"describe":@"横向排版的文字", @"effectString":[[NSAttributedString alloc] initWithString:@"我是横向排版的文字" attributes:@{NSVerticalGlyphFormAttributeName:@0}]},
+                                                                    @{@"title":@"NSExpansionAttributeName", @"describe":@"纵向排版的文字（iOS端不支持纵向排版）", @"effectString":[[NSAttributedString alloc] initWithString:@"我是纵向排版的文字（iOS端不支持纵向排版）" attributes:@{ NSVerticalGlyphFormAttributeName:@1}]}
+                                                                ]
                               }
                          ];
         
@@ -247,15 +297,19 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
+}
 
 @end
 
 
-@interface AttributedCell ()
+@interface AttributedCell ()<UITextViewDelegate>
 
 @property (weak, nonatomic) UILabel *titleLabel;
 @property (weak, nonatomic) UILabel *describeLabel;
-@property (weak, nonatomic) UILabel *effectLabel;
+//@property (weak, nonatomic) UILabel *effectLabel;
 
 @end
 @implementation AttributedCell
@@ -268,8 +322,13 @@
         self.titleLabel.frame = model.titleRect;
         self.describeLabel.text = model.attributedModel.describe;
         self.describeLabel.frame = model.describeRect;
-        self.effectLabel.attributedText = model.attributedModel.effectString;
-        self.effectLabel.frame = model.effectRect;
+//        self.effectLabel.attributedText = model.attributedModel.effectString;
+//        self.effectLabel.frame = model.effectRect;
+        self.effectTextView.attributedText = model.attributedModel.effectString;
+        self.effectTextView.frame = model.effectRect;
+        
+        NSLog(@"%@", NSStringFromCGRect(model.effectRect));
+        NSLog(@"%@", NSStringFromCGSize([self.effectTextView sizeThatFits:CGSizeMake(model.effectRect.size.width, CGFLOAT_MAX)]));
     }
 }
 
@@ -301,13 +360,53 @@
         [self.contentView addSubview:label];
         self.describeLabel = label;
         
-        label = [[UILabel alloc] init];
-        label.numberOfLines = 0;
-        [self.contentView addSubview:label];
-        self.effectLabel = label;
+//        label = [[UILabel alloc] init];
+//        label.numberOfLines = 0;
+//        [self.contentView addSubview:label];
+//        self.effectLabel = label;
+        
+        UITextView *textView = [[UITextView alloc] init];
+        textView.backgroundColor = [UIColor lightGrayColor];
+//        textView.textContainerInset = UIEdgeInsetsZero;
+        textView.scrollEnabled = NO;
+        textView.delegate = self;
+        textView.editable = NO;
+        [self.contentView addSubview:textView];
+        _effectTextView = textView;
+        
+        UITextField *textField = [[UITextField alloc] init];
+        textField.enabled = NO;
     }
     
     return self;
+}
+
+#pragma mark - <UITextViewDelegate>代理方法
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+{
+    NSRange range = NSMakeRange(0, 0);
+    NSDictionary *attributes;
+    while (range.location + range.length < self.model.attributedModel.effectString.length) {
+        attributes = [self.model.attributedModel.effectString attributesAtIndex:range.location + range.length effectiveRange:&range];
+        if ([attributes valueForKey:NSLinkAttributeName]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange
+{
+    NSRange range = NSMakeRange(0, 0);
+    NSDictionary *attributes;
+    while (range.location + range.length < self.model.attributedModel.effectString.length) {
+        attributes = [self.model.attributedModel.effectString attributesAtIndex:range.location + range.length effectiveRange:&range];
+        if ([attributes valueForKey:NSAttachmentAttributeName]) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 @end

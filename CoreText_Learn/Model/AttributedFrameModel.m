@@ -7,6 +7,7 @@
 //
 
 #import "AttributedFrameModel.h"
+#import "AttributedViewController.h"
 
 #define Default_Font                    [UIFont systemFontOfSize:14]
 
@@ -66,9 +67,10 @@
             }
         }
         size = [attributedModel.effectString boundingRectWithSize:limitSize options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-        _effectRect = (CGRect){{spacing, Y}, size};
+        AttributedCell *cell = [AttributedCell attributedCellWithAttributedFrameModel:self andTableView:nil];
+        _effectRect = (CGRect){{spacing, Y}, [cell.effectTextView sizeThatFits:limitSize]};
         
-        _cellHeight = Y + size.height + spacing;
+        _cellHeight = Y + _effectRect.size.height + spacing;
     }
 }
 

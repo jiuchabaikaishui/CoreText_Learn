@@ -17,6 +17,7 @@
 @interface AttributedCell : UITableViewCell
 
 @property (strong, nonatomic) AttributedFrameModel *model;
+@property (weak, nonatomic, readonly) UITextView *effectTextView;
 
 + (instancetype)attributedCellWithAttributedFrameModel:(AttributedFrameModel *)model andTableView:(UITableView *)tableView;
 
