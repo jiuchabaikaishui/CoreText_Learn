@@ -66,10 +66,17 @@
                 attributedModel.effectString = maStr;
             }
         }
-        size = [attributedModel.effectString boundingRectWithSize:limitSize options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-        AttributedCell *cell = [AttributedCell attributedCellWithAttributedFrameModel:self andTableView:nil];
-        _effectRect = (CGRect){{spacing, Y}, [cell.effectTextView sizeThatFits:limitSize]};
         
+        if ([attributes valueForKey:NSLinkAttributeName] || [attributes valueForKey:NSAttachmentAttributeName]) {
+            AttributedCell *cell = [AttributedCell attributedCellWithAttributedFrameModel:self andTableView:nil];
+            size = [cell.effectTextView sizeThatFits:limitSize];
+        }
+        else
+        {
+            size = [attributedModel.effectString boundingRectWithSize:limitSize options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
+        }
+        NSParagraphStyle *paragraphStyle = [attributes valueForKey:NSParagraphStyleAttributeName];
+        _effectRect = (CGRect){{spacing, Y}, [UIScreen mainScreen].bounds.size.width - 16, paragraphStyle.lineBreakMode ? 100 : size.height};// > 100 ? 100 : size.height
         _cellHeight = Y + _effectRect.size.height + spacing;
     }
 }

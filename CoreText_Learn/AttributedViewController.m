@@ -20,20 +20,42 @@
 {
     if (_dataArr == nil) {
         /*
-         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-         paragraphStyle.lineSpacing = 10;// 字体的行间距
-         paragraphStyle.firstLineHeadIndent = 20.0f;//首行缩进
-         paragraphStyle.alignment = NSTextAlignmentJustified;//（两端对齐的）文本对齐方式：（左，中，右，两端对齐，自然）
-         paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;//结尾部分的内容以……方式省略 ( "...wxyz" ,"abcd..." ,"ab...yz")
-         paragraphStyle.headIndent = 20;//整体缩进(首行除外)
-         paragraphStyle.tailIndent = 20;//
-         paragraphStyle.minimumLineHeight = 10;//最低行高
-         paragraphStyle.maximumLineHeight = 20;//最大行高
-         paragraphStyle.paragraphSpacing = 15;//段与段之间的间距
-         paragraphStyle.paragraphSpacingBefore = 22.0f;//段首行空白空间Distance between the bottom of the previous paragraph (or the end of its paragraphSpacing, if any) and the top of this paragraph.
-         paragraphStyle.baseWritingDirection = NSWritingDirectionLeftToRight;//从左到右的书写方向（一共三种）
-         paragraphStyle.lineHeightMultiple = 15; Natural line height is multiplied by this factor (if positive) before being constrained by minimum and maximum line height.
-         paragraphStyle.hyphenationFactor = 1;//连字属性 在iOS，唯一支持的值分别为0和1
+            NSFontAttributeName                设置字体属性，默认值：字体：Helvetica(Neue) 字号：12
+            NSForegroundColorAttributeNam      设置字体颜色，取值为 UIColor对象，默认值为黑色
+            NSBackgroundColorAttributeName     设置字体所在区域背景颜色，取值为 UIColor对象，默认值为nil, 透明色
+            NSLigatureAttributeName            设置连体属性，取值为NSNumber 对象(整数)，0 表示没有连体字符，1 表示使用默认的连体字符
+            NSKernAttributeName                设定字符间距，取值为 NSNumber 对象（整数），正值间距加宽，负值间距变窄
+            NSStrikethroughStyleAttributeName  设置删除线，取值为 NSNumber 对象（整数）
+            NSStrikethroughColorAttributeName  设置删除线颜色，取值为 UIColor 对象，默认值为黑色
+            NSUnderlineStyleAttributeName      设置下划线，取值为 NSNumber 对象（整数），枚举常量 NSUnderlineStyle中的值，与删除线类似
+            NSUnderlineColorAttributeName      设置下划线颜色，取值为 UIColor 对象，默认值为黑色
+            NSStrokeWidthAttributeName         设置笔画宽度，取值为 NSNumber 对象（整数），负值填充效果，正值中空效果
+            NSStrokeColorAttributeName         填充部分颜色，不是字体颜色，取值为 UIColor 对象
+            NSShadowAttributeName              设置阴影属性，取值为 NSShadow 对象
+            NSTextEffectAttributeName          设置文本特殊效果，取值为 NSString 对象，目前只有图版印刷效果可用：
+            NSBaselineOffsetAttributeName      设置基线偏移值，取值为 NSNumber （float）,正值上偏，负值下偏
+            NSObliquenessAttributeName         设置字形倾斜度，取值为 NSNumber （float）,正值右倾，负值左倾
+            NSExpansionAttributeName           设置文本横向拉伸属性，取值为 NSNumber （float）,正值横向拉伸文本，负值横向压缩文本
+            NSWritingDirectionAttributeName    设置文字书写方向，从左向右书写或者从右向左书写
+            NSVerticalGlyphFormAttributeName   设置文字排版方向，取值为 NSNumber 对象(整数)，0 表示横排文本，1 表示竖排文本
+            NSLinkAttributeName                设置链接属性，点击后调用浏览器打开指定URL地址
+            NSAttachmentAttributeName          设置文本附件,取值为NSTextAttachment对象,常用于文字图片混排  
+            NSParagraphStyleAttributeName      设置文本段落排版格式，取值为 NSParagraphStyle 对象
+         
+         
+            lineSpacing 字体的行间距
+            firstLineHeadIndent  首行缩进
+            alignment （两端对齐的）文本对齐方式：（左，中，右，两端对齐，自然）
+            lineBreakMode 结尾部分的内容以……方式省略 ( "...wxyz" ,"abcd..." ,"ab...yz")
+            headIndent 整体缩进(首行除外)
+            tailIndent
+            minimumLineHeight 最低行高
+            maximumLineHeight 最大行高
+            paragraphSpacing 段与段之间的间距
+            paragraphSpacingBefore 段首行空白空间
+            baseWritingDirection 书写方向（一共三种）
+            lineHeightMultiple
+            hyphenationFactor 连字属性 在iOS，唯一支持的值分别为0和1
          */
         NSMutableAttributedString *singleFontStr = [[NSMutableAttributedString alloc] initWithString:@"我是单个字符10-20号随机系统字体"];
         for (int index = 0; index < singleFontStr.length; index++) {
@@ -120,7 +142,31 @@
         headIndentParagraphStyle.headIndent = 20;
         
         NSMutableParagraphStyle *tailIndentParagraphStyle = [[NSMutableParagraphStyle alloc] init];
-        tailIndentParagraphStyle.tailIndent = [UIScreen mainScreen].bounds.size.width - 16;
+        tailIndentParagraphStyle.tailIndent = 250;
+        
+        NSMutableParagraphStyle *lineBreakMode1ParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        lineBreakMode1ParagraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        NSMutableParagraphStyle *lineBreakMode2ParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        lineBreakMode2ParagraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+        NSMutableParagraphStyle *lineBreakMode3ParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        lineBreakMode3ParagraphStyle.lineBreakMode = NSLineBreakByClipping;
+        NSMutableParagraphStyle *lineBreakMode4ParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        lineBreakMode4ParagraphStyle.lineBreakMode = NSLineBreakByTruncatingHead;
+        NSMutableParagraphStyle *lineBreakMode5ParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        lineBreakMode5ParagraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+        NSMutableParagraphStyle *lineBreakMode6ParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        lineBreakMode6ParagraphStyle.lineBreakMode = NSLineBreakByTruncatingMiddle;
+        
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineSpacing = 10;// 字体的行间距
+        paragraphStyle.firstLineHeadIndent = 10.0f;//首行缩进
+        paragraphStyle.alignment = NSTextAlignmentJustified;//（两端对齐的）文本对齐方式：（左，中，右，两端对齐，自然）
+        paragraphStyle.headIndent = 20;//整体缩进(首行除外)
+        paragraphStyle.minimumLineHeight = 10;//最低行高
+        paragraphStyle.maximumLineHeight = 30;//最大行高
+        paragraphStyle.paragraphSpacing = 15;//段与段之间的间距
+        paragraphStyle.paragraphSpacingBefore = 10.0f;
+        paragraphStyle.hyphenationFactor = 0;//连字属性 在iOS，唯一支持的值分别为0和1
         
         NSArray *arr = @[
                             @{@"title":@"文字字体", @"items":@[
@@ -137,8 +183,15 @@
                                                                     @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格右对齐", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体右对齐的文字" attributes:@{NSParagraphStyleAttributeName:alignmentRParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
                                                                     @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格居中对齐", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体居中对齐的文字" attributes:@{NSParagraphStyleAttributeName:alignmentCParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
                                                                     @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格首行缩进", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体首行缩进20个单位的文字" attributes:@{NSParagraphStyleAttributeName:firstLineHeadIndentParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
-                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格首行缩进", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体首行缩进20个单位的文字" attributes:@{NSParagraphStyleAttributeName:headIndentParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
-                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格首行缩进", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体首行缩进20个单位的文字" attributes:@{NSParagraphStyleAttributeName:tailIndentParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]}
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格非首行缩进", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体非首行缩进20个单位的文字" attributes:@{NSParagraphStyleAttributeName:headIndentParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格尾部缩进", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体尾部缩进250个单位的文字" attributes:@{NSParagraphStyleAttributeName:tailIndentParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格lineBreakMode", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体lineBreakMode为NSLineBreakByWordWrapping的文字" attributes:@{NSParagraphStyleAttributeName:lineBreakMode1ParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格lineBreakMode", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体lineBreakMode为NSLineBreakByCharWrapping的文字" attributes:@{NSParagraphStyleAttributeName:lineBreakMode2ParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格lineBreakMode", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体lineBreakMode为NSLineBreakByClipping的文字" attributes:@{NSParagraphStyleAttributeName:lineBreakMode3ParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格lineBreakMode", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体lineBreakMode为NSLineBreakByTruncatingHead的文字" attributes:@{NSParagraphStyleAttributeName:lineBreakMode4ParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格lineBreakMode", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体lineBreakMode为NSLineBreakByTruncatingTail的文字" attributes:@{NSParagraphStyleAttributeName:lineBreakMode5ParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格lineBreakMode", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体lineBreakMode为NSLineBreakByTruncatingMiddle的文字" attributes:@{NSParagraphStyleAttributeName:lineBreakMode6ParagraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]},
+                                                                    @{@"title":@"NSParagraphStyleAttributeName", @"describe":@"文字段落风格lineBreakMode", @"effectString":[[NSAttributedString alloc] initWithString:@"我是30号系统字体文字段落风格多样的文字\n看我效果如何，唯有运行一试，看看吧，看看吧！" attributes:@{NSParagraphStyleAttributeName:paragraphStyle, NSFontAttributeName:[UIFont systemFontOfSize:30]}]}
                                                                 ]
                               },
                             @{@"title":@"文字颜色", @"items":@[
@@ -309,7 +362,7 @@
 
 @property (weak, nonatomic) UILabel *titleLabel;
 @property (weak, nonatomic) UILabel *describeLabel;
-//@property (weak, nonatomic) UILabel *effectLabel;
+@property (weak, nonatomic) UILabel *effectLabel;
 
 @end
 @implementation AttributedCell
@@ -322,10 +375,24 @@
         self.titleLabel.frame = model.titleRect;
         self.describeLabel.text = model.attributedModel.describe;
         self.describeLabel.frame = model.describeRect;
-//        self.effectLabel.attributedText = model.attributedModel.effectString;
-//        self.effectLabel.frame = model.effectRect;
-        self.effectTextView.attributedText = model.attributedModel.effectString;
-        self.effectTextView.frame = model.effectRect;
+        NSRange range = NSMakeRange(0, 0);
+        NSDictionary *attributes;
+        while (range.location + range.length < model.attributedModel.effectString.length) {
+            attributes = [model.attributedModel.effectString attributesAtIndex:range.location + range.length effectiveRange:&range];
+        }
+        if ([attributes valueForKey:NSLinkAttributeName] || [attributes valueForKey:NSAttachmentAttributeName]) {
+            self.effectTextView.attributedText = model.attributedModel.effectString;
+            self.effectTextView.frame = model.effectRect;
+            self.effectTextView.hidden = NO;
+            self.effectLabel.hidden = YES;
+        }
+        else
+        {
+            self.effectLabel.attributedText = model.attributedModel.effectString;
+            self.effectLabel.frame = model.effectRect;
+            self.effectLabel.hidden = NO;
+            self.effectTextView.hidden = YES;
+        }
         
         NSLog(@"%@", NSStringFromCGRect(model.effectRect));
         NSLog(@"%@", NSStringFromCGSize([self.effectTextView sizeThatFits:CGSizeMake(model.effectRect.size.width, CGFLOAT_MAX)]));
@@ -360,14 +427,13 @@
         [self.contentView addSubview:label];
         self.describeLabel = label;
         
-//        label = [[UILabel alloc] init];
-//        label.numberOfLines = 0;
-//        [self.contentView addSubview:label];
-//        self.effectLabel = label;
+        label = [[UILabel alloc] init];
+        label.numberOfLines = 0;
+        [self.contentView addSubview:label];
+        self.effectLabel = label;
         
         UITextView *textView = [[UITextView alloc] init];
         textView.backgroundColor = [UIColor lightGrayColor];
-//        textView.textContainerInset = UIEdgeInsetsZero;
         textView.scrollEnabled = NO;
         textView.delegate = self;
         textView.editable = NO;
