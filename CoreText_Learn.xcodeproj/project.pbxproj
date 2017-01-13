@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E06360E1E28850700761F5A /* CoreTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E06360D1E28850700761F5A /* CoreTextViewController.m */; };
 		6E138EA91E1E2D8700DC8CE5 /* SectionAttributedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E138EA81E1E2D8700DC8CE5 /* SectionAttributedModel.m */; };
 		6E5211241DEC2C5F004CCAA2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5211231DEC2C5F004CCAA2 /* main.m */; };
 		6E5211271DEC2C5F004CCAA2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5211261DEC2C5F004CCAA2 /* AppDelegate.m */; };
-		6E52112A1DEC2C5F004CCAA2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5211291DEC2C5F004CCAA2 /* ViewController.m */; };
 		6E52112D1DEC2C60004CCAA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E52112B1DEC2C60004CCAA2 /* Main.storyboard */; };
 		6E52112F1DEC2C60004CCAA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E52112E1DEC2C60004CCAA2 /* Assets.xcassets */; };
 		6E5211321DEC2C60004CCAA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E5211301DEC2C60004CCAA2 /* LaunchScreen.storyboard */; };
@@ -44,14 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E06360C1E28850700761F5A /* CoreTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextViewController.h; sourceTree = "<group>"; };
+		6E06360D1E28850700761F5A /* CoreTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextViewController.m; sourceTree = "<group>"; };
 		6E138EA71E1E2D8700DC8CE5 /* SectionAttributedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionAttributedModel.h; sourceTree = "<group>"; };
 		6E138EA81E1E2D8700DC8CE5 /* SectionAttributedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionAttributedModel.m; sourceTree = "<group>"; };
 		6E52111F1DEC2C5F004CCAA2 /* CoreText_Learn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreText_Learn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E5211231DEC2C5F004CCAA2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6E5211251DEC2C5F004CCAA2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6E5211261DEC2C5F004CCAA2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6E5211281DEC2C5F004CCAA2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6E5211291DEC2C5F004CCAA2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6E52112C1DEC2C60004CCAA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6E52112E1DEC2C60004CCAA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E5211311DEC2C60004CCAA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -205,8 +205,8 @@
 			children = (
 				6EE9DE3E1E0BA3DF004D570F /* AttributedViewController.h */,
 				6EE9DE3F1E0BA3DF004D570F /* AttributedViewController.m */,
-				6E5211281DEC2C5F004CCAA2 /* ViewController.h */,
-				6E5211291DEC2C5F004CCAA2 /* ViewController.m */,
+				6E06360C1E28850700761F5A /* CoreTextViewController.h */,
+				6E06360D1E28850700761F5A /* CoreTextViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -348,11 +348,11 @@
 				6EE9DE401E0BA3DF004D570F /* AttributedViewController.m in Sources */,
 				6E138EA91E1E2D8700DC8CE5 /* SectionAttributedModel.m in Sources */,
 				6E5211591DEC2D0B004CCAA2 /* QSPDisplayView.m in Sources */,
-				6E52112A1DEC2C5F004CCAA2 /* ViewController.m in Sources */,
 				6EF45F361DEEA5910046BADA /* UIView+frameAdjust.m in Sources */,
 				6E5211271DEC2C5F004CCAA2 /* AppDelegate.m in Sources */,
 				6EEC37091DEFCB7100E99CD7 /* QSPFrameParserConfig.m in Sources */,
 				6E5211241DEC2C5F004CCAA2 /* main.m in Sources */,
+				6E06360E1E28850700761F5A /* CoreTextViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

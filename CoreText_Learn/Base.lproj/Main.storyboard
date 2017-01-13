@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--CoreText-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CoreTextViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MZE-cj-DVf"/>
                         <viewControllerLayoutGuide type="bottom" id="12r-jz-NIO"/>
@@ -18,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="B3w-74-Mzw"/>
+                    <navigationItem key="navigationItem" title="CoreText" id="B3w-74-Mzw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1884" y="836"/>
         </scene>
-        <!--Attributed View Controller-->
+        <!--富文本-->
         <scene sceneID="qZt-gv-OKj">
             <objects>
                 <viewController id="H7B-Hg-X61" customClass="AttributedViewController" sceneMemberID="viewController">
@@ -53,7 +53,7 @@
                             <constraint firstItem="frj-MM-Lzm" firstAttribute="top" secondItem="dNy-ef-iGn" secondAttribute="top" id="hK0-bW-ZUx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="oBa-Nr-Jjv"/>
+                    <navigationItem key="navigationItem" title="富文本" id="oBa-Nr-Jjv"/>
                     <connections>
                         <outlet property="tableView" destination="frj-MM-Lzm" id="fje-9v-VsJ"/>
                     </connections>
@@ -80,11 +80,11 @@
             </objects>
             <point key="canvasLocation" x="398" y="476"/>
         </scene>
-        <!--Item-->
+        <!--富文本-->
         <scene sceneID="b6J-Wd-Tyg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dgV-Ak-bdm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="7z6-CL-cPg"/>
+                    <tabBarItem key="tabBarItem" title="富文本" id="7z6-CL-cPg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cwT-Ox-eaJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -99,11 +99,11 @@
             </objects>
             <point key="canvasLocation" x="1162" y="115"/>
         </scene>
-        <!--Item-->
+        <!--CoreText-->
         <scene sceneID="K2g-cc-Wpw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bWS-ym-pNB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="EWf-LM-5Pc"/>
+                    <tabBarItem key="tabBarItem" title="CoreText" id="EWf-LM-5Pc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3KT-nc-YpZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

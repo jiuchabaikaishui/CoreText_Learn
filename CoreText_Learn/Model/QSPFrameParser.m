@@ -10,6 +10,32 @@
 
 @implementation QSPFrameParser
 
++ (CoretextData *)parseContent:(NSString *)content config:(QSPFrameParserConfig *)config
+{
+    NSDictionary *dic = [self attributesWithConfig:config];
+    NSAttributedString *aStr = [[NSAttributedString alloc] initWithString:content attributes:dic];
+    
+    //创建CTFramesetterRef示例
+    CTFramesetterRef setterRef = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)aStr);
+    
+    //获取需要绘制的区域高度
+    CGSize restrictSize = CGSizeMake(config.width, CGFLOAT_MAX);
+    CGSize coretextSize = CTFramesetterSuggestFrameSizeWithConstraints(setterRef, CFRangeMake(0, 0), nil, restrictSize, nil);
+    CGFloat textHeight = coretextSize.height;
+    
+    //生成CTFrameRef
+    CTFrameRef frameRef = [self creatFrameWithFrameSetter:setterRef config:config height:textHeight];
+    
+    CoretextData *data = [[CoretextData alloc] init];
+    data.frameRef = frameRef;
+    data.height = textHeight;
+    
+    //释放内存
+    CFRelease(setterRef);
+    CFRelease(frameRef);
+    
+    return data;
+}
 + (NSDictionary *)attributesWithConfig:(QSPFrameParserConfig *)config
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:1];
@@ -39,32 +65,6 @@
     CTFrameRef frameRef = CTFramesetterCreateFrame(setterRef, CFRangeMake(0, 0), pathRef, NULL);
     CFRelease(pathRef);
     return frameRef;
-}
-+ (CoretextData *)parseContent:(NSString *)content config:(QSPFrameParserConfig *)config
-{
-    NSDictionary *dic = [self attributesWithConfig:config];
-    NSAttributedString *aStr = [[NSAttributedString alloc] initWithString:content attributes:dic];
-    
-    //创建CTFramesetterRef是例
-    CTFramesetterRef setterRef = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)aStr);
-    
-    //获取需要绘制的区域高度
-    CGSize restrictSize = CGSizeMake(config.width, CGFLOAT_MAX);
-    CGSize coretextSize = CTFramesetterSuggestFrameSizeWithConstraints(setterRef, CFRangeMake(0, 0), nil, restrictSize, nil);
-    CGFloat textHeight = coretextSize.height;
-    
-    //生成CTFrameRef
-    CTFrameRef frameRef = [self creatFrameWithFrameSetter:setterRef config:config height:textHeight];
-    
-    CoretextData *data = [[CoretextData alloc] init];
-    data.frameRef = frameRef;
-    data.height = textHeight;
-    
-    //释放内存
-    CFRelease(setterRef);
-    CFRelease(frameRef);
-    
-    return data;
 }
 
 @end

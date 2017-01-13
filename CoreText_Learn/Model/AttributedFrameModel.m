@@ -49,6 +49,7 @@
         Y = Y + size.height + spacing;
         NSRange range = NSMakeRange(0, 0);
         NSDictionary *attributes;
+        BOOL linkOrAttachment = NO;
         while (range.location + range.length < attributedModel.effectString.length) {
             attributes = [attributedModel.effectString attributesAtIndex:range.location + range.length effectiveRange:&range];
             if (![attributes valueForKey:NSFontAttributeName]) {
@@ -65,9 +66,15 @@
                 [maStr addAttributes:mAttributes range:range];
                 attributedModel.effectString = maStr;
             }
+            
+            if (!linkOrAttachment) {
+                if ([attributes valueForKey:NSLinkAttributeName] || [attributes valueForKey:NSAttachmentAttributeName]) {
+                    linkOrAttachment = YES;
+                }
+            }
         }
         
-        if ([attributes valueForKey:NSLinkAttributeName] || [attributes valueForKey:NSAttachmentAttributeName]) {
+        if (linkOrAttachment) {
             AttributedCell *cell = [AttributedCell attributedCellWithAttributedFrameModel:self andTableView:nil];
             size = [cell.effectTextView sizeThatFits:limitSize];
         }

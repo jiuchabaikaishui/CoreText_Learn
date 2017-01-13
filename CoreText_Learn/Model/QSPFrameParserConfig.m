@@ -14,9 +14,9 @@
 {
     if (self = [super init]) {
         self.width = 200.0f;
-        self.lineSpace = 8.0f;
-        self.fontSize = 16.0f;
-        self.textColor = Color_RGB(108, 108, 108);
+        self.lineSpace = Default_With;
+        self.fontSize = Default_LineSpace;
+        self.textColor = Default_TextColor;
     }
     
     return self;

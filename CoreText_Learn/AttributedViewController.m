@@ -313,7 +313,6 @@
 }
 - (void)settingUi
 {
-    self.title = @"富文本";
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -377,10 +376,16 @@
         self.describeLabel.frame = model.describeRect;
         NSRange range = NSMakeRange(0, 0);
         NSDictionary *attributes;
+        BOOL linkOrAttachment = NO;
         while (range.location + range.length < model.attributedModel.effectString.length) {
             attributes = [model.attributedModel.effectString attributesAtIndex:range.location + range.length effectiveRange:&range];
+            if ([attributes valueForKey:NSLinkAttributeName] || [attributes valueForKey:NSAttachmentAttributeName]) {
+                linkOrAttachment = YES;
+                break;
+            }
         }
-        if ([attributes valueForKey:NSLinkAttributeName] || [attributes valueForKey:NSAttachmentAttributeName]) {
+        
+        if (linkOrAttachment) {
             self.effectTextView.attributedText = model.attributedModel.effectString;
             self.effectTextView.frame = model.effectRect;
             self.effectTextView.hidden = NO;
@@ -393,9 +398,6 @@
             self.effectLabel.hidden = NO;
             self.effectTextView.hidden = YES;
         }
-        
-        NSLog(@"%@", NSStringFromCGRect(model.effectRect));
-        NSLog(@"%@", NSStringFromCGSize([self.effectTextView sizeThatFits:CGSizeMake(model.effectRect.size.width, CGFLOAT_MAX)]));
     }
 }
 
