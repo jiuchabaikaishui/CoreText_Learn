@@ -15,9 +15,18 @@
 
 @interface QSPFrameParserConfig : NSObject
 
+@property (copy, nonatomic) NSString *type;
+@property (copy, nonatomic) NSString *content;
 @property (assign, nonatomic) CGFloat width;
 @property (assign, nonatomic) CGFloat fontSize;
 @property (assign, nonatomic) CGFloat lineSpace;
 @property (strong, nonatomic) UIColor *textColor;
+@property (assign, nonatomic) CGFloat firstLineHeadIndent;
+@property (copy, nonatomic) NSString *imageName;
+@property (assign, nonatomic) CGFloat imageWidth;
+@property (assign, nonatomic) CGFloat imageHeight;
+
++ (QSPFrameParserConfig *)frameParserConfigWithDic:(NSDictionary *)dic;
+- (QSPFrameParserConfig *)initWithDic:(NSDictionary *)dic;
 
 @end

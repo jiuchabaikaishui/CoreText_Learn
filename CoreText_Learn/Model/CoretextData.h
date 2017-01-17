@@ -13,5 +13,15 @@
 
 @property (assign, nonatomic) CTFrameRef frameRef;
 @property (assign, nonatomic) CGFloat height;
+@property (strong, nonatomic) NSArray *imageArray;
+
+@end
+
+
+@interface CoreTextImageData : NSObject
+
+@property (copy, nonatomic) NSString *imageName;
+@property (assign, nonatomic) NSInteger position;
+@property (assign, nonatomic) CGRect imageRect;
 
 @end

@@ -12,7 +12,7 @@
 
 @interface QSPFrameParser : NSObject
 
-+ (CoretextData *)parseContent:(NSString *)content config:(QSPFrameParserConfig *)config;
++ (CoretextData *)parseConfig:(QSPFrameParserConfig *)config;
 
 + (CoretextData *)parseAttributedTemplateFile:(NSString *)path andWith:(CGFloat)width;
 
